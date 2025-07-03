@@ -1,41 +1,38 @@
-import {HttpErrorResponse, HttpInterceptorFn} from '@angular/common/http';
-import {inject} from '@angular/core';
-import {catchError, of} from 'rxjs';
-import {Router} from '@angular/router';
+import {HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
+import { inject } from '@angular/core';
+import {catchError, Observable, of, throwError} from 'rxjs';
+import { Router } from '@angular/router';
 
-export const jwtInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
-
-  const token = localStorage.getItem('jwt_token');
+export function jwtInterceptorInterceptor
+(req: HttpRequest<unknown>,
+ next: HttpHandlerFn) : Observable<HttpEvent<unknown>> {
+  const token = sessionStorage.getItem('jwt_token');
   const router = inject(Router);
+
   let cloneReq = req;
 
   if (token) {
     cloneReq = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer '+token)
-    })
+      headers: req.headers.set('Authorization', 'Bearer ' + token)
+    });
   }
-  return next(req)
+
+  return next(cloneReq)
     .pipe(
-      catchError( err => {
+      catchError(err => {
         if (err instanceof HttpErrorResponse) {
-          console.log('error', err)
+          console.log('HTTP Error', err);
+
           switch (err.status) {
             case 0:
-              // do something
-              console.log('redirect to login')
-              router.navigateByUrl('demo1')
-              break;
-
             case 401:
-            case 404:
-              // do something
-              console.log('redirect to login')
+            case 403:
+              router.navigateByUrl('/login');
               break;
-
-            //...
           }
         }
-        return of(err);
+
+        return throwError(err);
       })
-    )
-};
+  );
+}
