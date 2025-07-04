@@ -2,11 +2,13 @@ import {HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequ
 import { inject } from '@angular/core';
 import {catchError, Observable, of, throwError} from 'rxjs';
 import { Router } from '@angular/router';
+import {AuthService} from './auth.service';
 
 export function jwtInterceptorInterceptor
 (req: HttpRequest<unknown>,
  next: HttpHandlerFn) : Observable<HttpEvent<unknown>> {
-  const token = sessionStorage.getItem('jwt_token');
+  const auth = inject(AuthService);
+  const token = auth.getToken();
   const router = inject(Router);
 
   let cloneReq = req;
@@ -27,8 +29,15 @@ export function jwtInterceptorInterceptor
             case 0:
             case 401:
             case 403:
-              router.navigateByUrl('/login');
+              if(auth.isLoggedIn()) {
+                alert('Non hai i permessi per accedere a questa pagina')
+                router.navigateByUrl('/home');
+              } else {
+                router.navigateByUrl('/login');
+                alert('Non sei loggato')
+              }
               break;
+
           }
         }
 

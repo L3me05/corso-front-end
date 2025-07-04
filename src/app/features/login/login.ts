@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {routes} from '../../app.routes';
 import {Alert} from '../../shared/components/alert';
+import {AuthService} from '../../core/auth/auth.service';
 
 export interface Token {
   token: string;
@@ -103,6 +104,7 @@ export default class Login {
   http = inject(HttpClient)
   router= inject(Router);
   error = signal(false);
+  auth = inject(AuthService)
 
 
   login(username: HTMLInputElement, password: HTMLInputElement) {
@@ -113,7 +115,7 @@ export default class Login {
     })
       .subscribe({
         next: res => {
-          sessionStorage.setItem('jwt_token', res.token)
+          this.auth.setToken(res.token)
           this.router.navigateByUrl('/home')
         },
         error: () => {

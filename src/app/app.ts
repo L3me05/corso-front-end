@@ -7,7 +7,7 @@ import {Navbar} from './core/components/navbar';
   imports: [RouterOutlet, Navbar],
   template: `
     <app-navbar />
-    <div class="max-w-screen-lg mx-3 lg:mx-auto">
+    <div class="min-h-screen max-w-screen-lg mx-3 lg:mx-auto">
       <router-outlet />
     </div>
   `,
