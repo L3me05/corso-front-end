@@ -1,15 +1,134 @@
-import { Component } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
+import {Alert} from '../../shared/components/alert';
+import {FormsModule} from '@angular/forms';
+import {Router, RouterLink} from '@angular/router';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {AuthService} from '../../core/auth/auth.service';
+import {Token} from '../login/login';
 
 @Component({
   selector: 'app-signup',
-  imports: [],
+  imports: [
+    Alert,
+    FormsModule,
+    RouterLink
+  ],
   template: `
-    <p>
-      signup works!
-    </p>
+    <div class="flex justify-center pr-150 pt-10 ">
+      <button
+        class="btn-primary hover:bg-blend-color"
+        routerLink="/home"
+      >
+        Indietro
+      </button>
+    </div>
+
+
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 w-auto"
+             src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"/>
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight ">Benvenuto registrati</h2>
+      </div>
+
+      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        @if (error()) {
+          <app-alert
+            variant="error"
+          >
+            {{errorMessage}}
+          </app-alert>
+        }
+
+
+      </div>
+
+      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" (ngSubmit)="signup(inputUsername, inputPassword)" >
+          <div>
+            <label for="username" class="block text-sm/6 font-medium ">Username</label>
+            <div class="mt-2">
+              <input
+                type="text" name="username" id="email" required placeholder="Inserisci il tuo username"
+                #inputUsername
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="password" class="block text-sm/6 font-medium ">Password</label>
+              <!--              <div class="text-sm">-->
+              <!--                <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>-->
+              <!--              </div>-->
+            </div>
+            <div class="mt-2">
+              <input
+                type="password" name="password" id="password" autocomplete="current-password" required placeholder="Inserisci la tua password"
+                #inputPassword
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Registrati
+            </button>
+          </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm/6 text-gray-500">
+          Sei già registrato?
+
+          <a routerLink="/login" class="font-semibold text-indigo-600 hover:text-indigo-500">Accedi</a>
+        </p>
+      </div>
+    </div>
+
   `,
   styles: ``
 })
 export default class Signup {
+
+  http = inject(HttpClient)
+  router= inject(Router);
+  error = signal(false);
+  auth = inject(AuthService)
+  errorMessage = 'Errore'
+
+
+  signup(username: HTMLInputElement, password: HTMLInputElement) {
+
+    this.http.post('http://localhost:8085/auth/signup', {
+      username: username.value,
+      password: password.value
+    }, {
+      responseType: 'text'
+    })
+      .subscribe({
+        next: res => {
+          console.log(res)
+          this.router.navigateByUrl('/login')
+        },
+        error: err => {
+          if(err instanceof HttpErrorResponse && err.status === 400 && err.error === 'Username already exists'){
+            this.errorMessage="L'username non è disponibile"
+
+          }
+          this.error.set(true)
+          console.log(this.errorMessage)
+        }
+      })
+
+
+
+    console.log('username', username.value)
+    console.log('password', password.value)
+
+  }
 
 }
