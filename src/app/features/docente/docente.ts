@@ -40,7 +40,7 @@ export default class Docente implements OnInit{
     "b p-4 " +
     "border-none " +
     "outline-none " +
-    "text-xl"
+    "text-md"
 
 
   ngOnInit() {

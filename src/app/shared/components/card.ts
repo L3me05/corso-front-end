@@ -8,11 +8,16 @@ import {NgClass} from '@angular/common';
   ],
   template: `
     <div
-      class="card"
+      class="card h-full"
       [ngClass]="cardClass"
     >
       <div class="card-body">
-        <h2 class="card-title">{{ title }}</h2>
+        <h2
+          class="card-title"
+          [ngClass]="titleStyle"
+        >
+          {{ title }}
+        </h2>
         <p>
           <ng-content />
         </p>
@@ -41,5 +46,6 @@ export class Card {
   @Input() title: string= '';
   @Input() variant: 'info' | 'success' | 'error' | 'warning' | undefined;
   @Input() cardClass: string = 'bg-primary text-primary-content w-96'
+  @Input() titleStyle: string = 'text-xl font-bold'
 
 }

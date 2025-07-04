@@ -8,27 +8,48 @@ import {Corso} from '../../model/Corso';
   selector: 'app-corso',
   standalone: true,
   imports: [
-    Card
+    Card,
+    JsonPipe
   ],
   template: `
     <p>
       corso works!
     </p>
 
-    <div class="flex flex-wrap gap-4 p-4 ">
+    <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-8 p-6">
       @for (corso of corsi(); track corso.nome) {
-        <div class="">
+        <div class="break-inside-avoid mb-8">
           <app-card
-            cardClass="bg-sky-300 "
-            [title]="corso.nome"
+            cardClass="bg-sky-300 p-6 w-full flex flex-col rounded-3xl shadow-lg"
+            [title]="corso.nome + ' (' + corso.annoAccademico + ')'"
+            titleStyle="text-center text-2xl font-semibold border-b-2 p-4"
           >
-            {{corso?.nome}}
-            <br>
-            Anno Accademico: {{corso?.annoAccademico}}
+            <div class="mt-6 flex flex-col gap-6">
+              <!-- Docente -->
+              <div class="flex flex-col gap-3">
+                <h2 class="text-lg font-bold text-blue-800">Docente</h2>
+                <div class="ml-4 text-md text-gray-700">
+                  {{corso.docente.nome}} {{corso.docente.cognome}}
+                </div>
+              </div>
+
+              <!-- Discenti -->
+              <div class="flex flex-col gap-3">
+                <h2 class="text-lg font-bold text-blue-800">Discenti</h2>
+                @for (discente of corso.discenti; track discente.nome) {
+                  <div class="ml-4 text-md text-gray-700">
+                    {{discente.nome}} {{discente.cognome}}
+                  </div>
+                }
+              </div>
+            </div>
           </app-card>
         </div>
       }
     </div>
+
+
+    <pre>{{corsi() | json}}</pre>
   `,
   styles: ``
 })
