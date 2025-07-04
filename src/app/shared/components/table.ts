@@ -15,7 +15,7 @@ import {CommonModule, JsonPipe} from '@angular/common';
         <thead>
         <tr
           [ngClass]="headStyle"
-          class=""
+          class="text-lg"
         >
           @for (col of columns(); track $index) {
             <th>{{ col }}</th>

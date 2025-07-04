@@ -15,16 +15,16 @@ import {AuthService} from '../auth/auth.service';
       <div class="flex-1">
         <app-dropdown
           [items]="dropdownItems()"
-          buttonClass="btn-ghost text-xl"
+          buttonClass="btn-ghost text-3xl"
           (select)="onSelect($event)"
-          dropStyle="bg-sky-300  "
+          dropStyle="bg-sky-300 text-xl  "
           hover
         >
           MyCorsi
         </app-dropdown>
       </div>
       <div class="flex-none">
-        <ul class="menu menu-horizontal pxs-1">
+        <ul class="menu menu-horizontal pxs-1 text-xl">
           <li routerLinkActive="text-sky-400" routerLink="home"><a>Home</a></li>
           <li routerLinkActive="text-sky-400" routerLink="corso"><a>Corso</a></li>
           <li routerLinkActive="text-sky-400" routerLink="discente"><a>Discente</a></li>

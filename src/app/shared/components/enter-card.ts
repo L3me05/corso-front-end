@@ -32,7 +32,7 @@ import {AuthService} from '../../core/auth/auth.service';
         </app-card>
       </div>
     } @else if (auth.isLoggedIn()) {
-      <button class="btn" (click)="auth.logout()">Logout</button>
+      <button class="btn text-xl" (click)="auth.logout()">Logout</button>
     }
   `,
   styles: ``

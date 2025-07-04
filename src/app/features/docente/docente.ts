@@ -9,11 +9,8 @@ import {Table} from '../../shared/components/table';
     Table
   ],
   template: `
-    <p>
-      docente works!
-    </p>
 
-    <div class="bg-sky-400/80 shadow-2xl backdrop-blur-lg p-8 rounded-4xl max-w-4xl mx-auto m-8">
+    <div class="bg-sky-300 shadow-2xl backdrop-blur-lg p-8 rounded-4xl max-w-4xl mx-auto m-8">
 
       <app-table
         [items]="docenti"
@@ -25,9 +22,6 @@ import {Table} from '../../shared/components/table';
 
   `,
   styles: [`
-    .boh {
-
-    }
 
   `]
 })
@@ -39,14 +33,14 @@ export default class Docente implements OnInit{
 
   rowStyle= "transition-all " +
     "duration-300  " +
-    "hover:bg-sky-400/20 " +
     "hover:shadow-[0_8px_15px_rgba(0,0,0,0.3)] " +
     "hover:scale-105  " +
     "hover:translate-y-[-4px] " +
     "rounded-[1.5rem] " +
     "b p-4 " +
     "border-none " +
-    "outline-none "
+    "outline-none " +
+    "text-xl"
 
 
   ngOnInit() {
