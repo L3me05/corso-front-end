@@ -13,7 +13,7 @@ export type DropdownItem = {
     NgClass
   ],
   template: `
-    <div class="dropdown"
+    <div class="dropdown menu"
          [ngClass]="{
             'dropdown-top dropdown-end': placement === 'top',
             'dropdown-left': placement === 'left',
@@ -34,6 +34,7 @@ export type DropdownItem = {
       <ul
         tabindex="0"
         class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+        [ngClass]="dropStyle"
 
       >
         @for (item of items; track $index) {
@@ -54,6 +55,7 @@ export class Dropdown {
   @Input() placement: 'left' | 'right' | 'bottom' | 'top' = 'bottom';
   @Input({transform: booleanAttribute}) hover = false;
   @Input() buttonClass: string = ' m-1';
+  @Input() dropStyle: string = 'bg-base-100';
   @Output() select = new EventEmitter<DropdownItem>();
 
   itemClick(item: DropdownItem) {

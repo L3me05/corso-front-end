@@ -1,34 +1,79 @@
-import { Component } from '@angular/core';
+import {Component, computed, Input, Signal, signal} from '@angular/core';
+import {CommonModule, JsonPipe} from '@angular/common';
 
 @Component({
   selector: 'app-table',
-  imports: [],
+  imports: [
+    CommonModule
+  ],
+  standalone: true,
   template: `
-    <div class="overflow-x-auto">
-      <table class="table table-zebra">
+
+    <div class="">
+      <table class="table shadow-none w-full border-none border-collapse ">
         <!-- head -->
         <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
+        <tr
+          [ngClass]="headStyle"
+          class=""
+        >
+          @for (col of columns(); track $index) {
+            <th>{{ col }}</th>
+          }
         </tr>
         </thead>
-        <tbody>
-        <!-- row 1 -->
-        <tr>
-          <th>1</th>
-          <td>Cy Ganderton</td>
-          <td>Quality Control Specialist</td>
-          <td>Blue</td>
-        </tr>
+
+        <!-- body -->
+        <tbody class="">
+          @for (item of items(); track $index) {
+            <tr
+              [ngClass]="rowStyle"
+              class=""
+            >
+              @for (col of columns(); track $index) {
+                <td
+                  class=""
+                >
+                  {{ item[col] }}
+                </td>
+              }
+            </tr>
+          }
         </tbody>
+
+        <!-- foot (opzionale, puoi rimuoverlo) -->
+        <tfoot>
+        <tr>
+          @for (col of columns(); track $index) {
+            <th></th>
+          }
+        </tr>
+        </tfoot>
       </table>
     </div>
+
+    <!-- debug -->
+<!--    <pre>{{ items() | json }}</pre>-->
+
   `,
   styles: ``
 })
 export class Table {
+  @Input() items!: Signal<Record<string, any>[]>;
+  @Input() rowStyle: string = 'bg-base-100';
+  @Input() headStyle: string = '';
+
+
+
+  columns = computed(() => {
+    const data = this.items();
+    return data.length > 0
+      ? Object.keys(data[0])
+      : [];
+  })
+
+
+
+
 
 }

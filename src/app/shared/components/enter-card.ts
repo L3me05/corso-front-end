@@ -39,7 +39,7 @@ import {AuthService} from '../../core/auth/auth.service';
 })
 export class EnterCard {
 
-  cardClass = 'bg-sky-900 text-primary-content w-100% '
+  cardClass = 'bg-sky-500/80 text-primary-content w-100% '
   router = inject(Router)
   auth = inject(AuthService)
 

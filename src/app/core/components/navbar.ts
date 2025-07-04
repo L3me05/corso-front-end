@@ -17,6 +17,7 @@ import {AuthService} from '../auth/auth.service';
           [items]="dropdownItems()"
           buttonClass="btn-ghost text-xl"
           (select)="onSelect($event)"
+          dropStyle="bg-sky-300  "
           hover
         >
           MyCorsi
