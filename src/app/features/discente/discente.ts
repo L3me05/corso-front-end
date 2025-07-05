@@ -6,7 +6,6 @@ import {Table} from '../../shared/components/table';
 @Component({
   selector: 'app-discente',
   imports: [
-    JsonPipe,
     Table
   ],
   template: `
