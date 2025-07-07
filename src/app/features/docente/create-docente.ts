@@ -9,24 +9,30 @@ import {Validators} from '@angular/forms';
     DynamicForm
   ],
   template: `
-    <div class="flex justify-center flex-wrap">
+  <div class="flex flex-col w-full items-center justify-center py-5">
+    <div class="font-bold text-3xl p-10 text-sky-800">
+      Crea un nuovo docente
+    </div>
+
+    <div class="w-full items-stretch max-w-md "> <!-- Contenitore aggiuntivo -->
       <app-dynamic-form
         [fields]="fields"
         [formCss]="formCss"
         [button]="button"
+        (submitForm)="save($event)"
       />
-
     </div>
-
-  `,
+  </div>
+`,
   styles: ``
 })
 export default class CreateDocente {
-  cssLabel = 'text-lg font-bold';
-  cssInput = 'input input-bordered w-full';
-  formCss = 'flex flex-col gap-4 p-4 items-center';
+  cssLabel = 'text-lg font-bold ';
+  cssInput = 'input input-bordered w-full rounded-xl px-6 text-sky-800/70 ';
+  formCss = 'flex flex-col  gap-8 p-4 ';
+  globalCss = 'flex flex-col gap-4 ';
   button : ButtonForm = {
-    css: 'btn btn-primary ',
+    css: 'btn btn-primary rounded-xl px-8 py-6 w-fit font-bold text-lg',
     label: 'Invia'
   }
 
@@ -38,7 +44,9 @@ export default class CreateDocente {
       cssLabel: this.cssLabel,
       placeholder: 'Nome',
       cssInput: this.cssInput,
-      validators: [Validators.required]
+      validators: [Validators.required],
+      globalCss: this.globalCss
+
     },
     {
       name: 'cognome',
@@ -47,7 +55,8 @@ export default class CreateDocente {
       cssLabel: this.cssLabel,
       placeholder: 'Cognome',
       cssInput: this.cssInput,
-      validators: [Validators.required]
+      validators: [Validators.required],
+      globalCss: this.globalCss
     },
     {
       name: 'dataNascita',
@@ -56,9 +65,16 @@ export default class CreateDocente {
       cssLabel: this.cssLabel,
       placeholder: 'Data di nascita',
       cssInput: this.cssInput,
-      validators: [ Validators.required ]
+      validators: [ Validators.required ],
+      globalCss: this.globalCss
 
     }
   ];
+
+  save(formValue: any) {
+
+
+
+  }
 
 }

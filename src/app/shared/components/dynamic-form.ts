@@ -16,9 +16,7 @@ export type ButtonForm = {
     CommonModule
   ],
   template: `
-    <p>
-      dynamic-form works!
-    </p>
+
     <form
       [formGroup]="form"
       (ngSubmit)="onSubmit()"
