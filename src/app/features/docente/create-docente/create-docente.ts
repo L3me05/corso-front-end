@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ButtonForm, DynamicForm} from '../../shared/components/dynamic-form';
-import {FieldConfig} from '../../shared/model/field-config.model';
+import {ButtonForm, DynamicForm} from '../../../shared/components/dynamic-form/dynamic-form';
+import {FieldConfig} from '../../../shared/model/field-config.model';
 import {Validators} from '@angular/forms';
 
 @Component({
@@ -8,23 +8,9 @@ import {Validators} from '@angular/forms';
   imports: [
     DynamicForm
   ],
-  template: `
-  <div class="flex flex-col w-full items-center justify-center py-5">
-    <div class="font-bold text-3xl p-10 text-sky-800">
-      Crea un nuovo docente
-    </div>
+  templateUrl: './create-docente.html',
+  styleUrl: './create-docente.css'
 
-    <div class="w-full items-stretch max-w-md "> <!-- Contenitore aggiuntivo -->
-      <app-dynamic-form
-        [fields]="fields"
-        [formCss]="formCss"
-        [button]="button"
-        (submitForm)="save($event)"
-      />
-    </div>
-  </div>
-`,
-  styles: ``
 })
 export default class CreateDocente {
   cssLabel = 'text-lg font-bold ';

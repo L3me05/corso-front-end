@@ -6,23 +6,8 @@ import {EnterCard} from '../../shared/components/enter-card';
   imports: [
     EnterCard
   ],
-  template: `
-    <p>
-      home works!
-    </p>
-
-    <div class="flex flex-col md:flex-row gap-4 p-4">
-      <div class="w-7/24">
-        <app-enter-card />
-      </div>
-      <div class="flex-1">
-        <p>prova</p>
-      </div>
-    </div>
-
-
-  `,
-  styles: ``
+  templateUrl: './home.html',
+  styleUrl: './home.css'
 })
 export default class Home {
 

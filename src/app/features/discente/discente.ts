@@ -1,25 +1,15 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {JsonPipe} from '@angular/common';
-import {Table} from '../../shared/components/table';
+import {Table} from '../../shared/components/table/table';
 
 @Component({
   selector: 'app-discente',
   imports: [
     Table
   ],
-  template: `
-
-    <div class="bg-sky-300 shadow-2xl backdrop-blur-lg p-8 rounded-4xl max-w-4xl mx-auto m-8">
-
-      <app-table
-        [items]="discenti"
-        [rowStyle]="rowStyle"
-
-      />
-    </div>
-  `,
-  styles: ``
+  templateUrl: './discente.html',
+  styleUrl: './discente.css'
 })
 export default class Discente implements OnInit{
   http = inject(HttpClient)

@@ -1,8 +1,8 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {JsonPipe} from '@angular/common';
-import {Table} from '../../shared/components/table';
-import {Card} from '../../shared/components/card';
+import {Table} from '../../../shared/components/table/table';
+import {Card} from '../../../shared/components/card';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -11,41 +11,8 @@ import {RouterLink} from '@angular/router';
     Table,
     RouterLink
   ],
-  template: `
-
-    <div
-      class="flex flex-col w-full flex-wrap justify-end"
-    >
-      <div class="bg-sky-300 shadow-2xl backdrop-blur-lg p-8 rounded-4xl max-w-4xl mx-auto m-8 w-full">
-
-        <app-table
-          [items]="docenti"
-          [rowStyle]="rowStyle"
-
-        />
-      </div>
-
-      <div class="flex justify-end">
-        <button
-          class="btn mr-20 bg-sky-300 shadow-lg rounded-4xl px-8 py-6 "
-          routerLink="create"
-        >
-          Crea un nuovo docente
-        </button>
-
-
-      </div>
-    </div>
-
-
-
-
-
-
-  `,
-  styles: [`
-
-  `]
+  templateUrl: './list-docente.html',
+  styleUrl: './list-docente.css'
 })
 export default class ListDocente implements OnInit{
 
