@@ -15,6 +15,7 @@ export class Table {
   @Input() rowStyle: string = 'bg-base-100';
   @Input() headStyle: string = '';
   @Output() deleteItem = new EventEmitter();
+  @Output() editItem = new EventEmitter();
 
 
 

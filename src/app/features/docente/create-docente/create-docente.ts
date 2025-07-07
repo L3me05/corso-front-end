@@ -5,6 +5,7 @@ import {Validators} from '@angular/forms';
 import {NgClass} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {DocenteService} from '../../../core/services/docente.service';
+import {DOCENTE_BUTTON, DOCENTE_FIELDS, DOCENTE_FORM_CSS} from '../docente-form.config';
 
 @Component({
   selector: 'app-create-docente',
@@ -20,49 +21,10 @@ export default class CreateDocente {
   docenteService = inject(DocenteService);
   router = inject(Router);
 
-  cssLabel = 'text-lg font-bold ';
-  cssInput = 'input input-bordered w-full rounded-xl px-6 text-sky-800/70 ';
-  formCss = 'flex flex-col  gap-8 p-4 ';
-  globalCss = 'flex flex-col gap-4 ';
-  button : ButtonForm = {
-    css: 'btn bg-none bg-sky-300/60 text-white text-lg rounded-xl px-8 py-6 w-fit font-bold text-lg',
-    label: 'Invia'
-  }
+  fields = DOCENTE_FIELDS;
+  button = DOCENTE_BUTTON;
+  formCss = DOCENTE_FORM_CSS;
 
-  fields: FieldConfig[] = [
-    {
-      name: 'nome',
-      type: 'text',
-      label: 'Inserisci il tuo nome',
-      cssLabel: this.cssLabel,
-      placeholder: 'Nome',
-      cssInput: this.cssInput,
-      validators: [Validators.required],
-      globalCss: this.globalCss
-
-    },
-    {
-      name: 'cognome',
-      type: 'text',
-      label: 'Inserisci il tuo cognome',
-      cssLabel: this.cssLabel,
-      placeholder: 'Cognome',
-      cssInput: this.cssInput,
-      validators: [Validators.required],
-      globalCss: this.globalCss
-    },
-    {
-      name: 'dataNascita',
-      type: 'date',
-      label: 'Inserisci la tua data di nascita',
-      cssLabel: this.cssLabel,
-      placeholder: 'Data di nascita',
-      cssInput: this.cssInput,
-      validators: [ Validators.required ],
-      globalCss: this.globalCss
-
-    }
-  ];
 
   save(formValue: any) {
     this.docenteService.createDocente(formValue).subscribe({

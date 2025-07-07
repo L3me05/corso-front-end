@@ -27,8 +27,9 @@
             </td>
           }
 
-          <td>
-            <button class="btn" (click)="$event.stopPropagation(); deleteItem.emit(item)">prova</button>
+          <td class="flex justify-end gap-3">
+            <button class="btn rounded-2xl bg-base-100 " (click)="deleteItem.emit(item)">Elimina</button>
+            <button class="btn rounded-2xl bg-base-100 " (click)="editItem.emit(item)">Modifica</button>
           </td>
         </tr>
       }

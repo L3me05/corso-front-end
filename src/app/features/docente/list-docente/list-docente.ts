@@ -1,14 +1,14 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {JsonPipe} from '@angular/common';
 import {Table} from '../../../shared/components/table/table';
-import {Card} from '../../../shared/components/card';
-import {RouterLink} from '@angular/router';
 import {DocenteService} from "../../../core/services/docente.service";
 import {Docente} from "../../../shared/model/Docente";
+import {Router, RouterLink} from '@angular/router';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-docente',
+  standalone: true,
   imports: [
     Table,
     RouterLink
@@ -17,12 +17,11 @@ import {Docente} from "../../../shared/model/Docente";
   styleUrl: './list-docente.css'
 })
 export default class ListDocente implements OnInit {
-
-  http = inject(HttpClient)
+  http = inject(HttpClient);
   docenti = signal<Docente[]>([]);
-  docenteService = inject(DocenteService)
-  id: number | undefined;
-
+  docenteService = inject(DocenteService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
 
   rowStyle = "transition-all " +
     "duration-300  " +
@@ -45,16 +44,17 @@ export default class ListDocente implements OnInit {
   }
 
   delete(item: Docente) {
-    console.log(item.id)
-    this.id = item.id;
-    this.docenteService.deleteDocente(this.id).subscribe({
+    this.docenteService.deleteDocente(item.id).subscribe({
       next: () => {
         this.docenti.update(arr => arr.filter(d => d.id !== item.id));
-        this.docenteService.getDocente()
-
       },
       error: err => console.error('Delete failed', err)
     });
   }
 
+  edit(item: Docente) {
+    console.log('Navigazione a edit per docente:', item.id);
+    // Usa la navigazione relativa
+    this.router.navigate(['edit', item.id], { relativeTo: this.route });
+  }
 }

@@ -29,6 +29,7 @@ export class DynamicForm implements OnChanges{
   };
   @Output()
   submitForm = new EventEmitter<any>();
+  @Input() initialValues?: any;
 
   form!: FormGroup;
   fb = inject(FormBuilder);
@@ -37,6 +38,10 @@ export class DynamicForm implements OnChanges{
     const group: Record<string, any> = {};
     this.fields.forEach(f => group[f.name] = ['', f.validators || []]);
     this.form = this.fb.group(group);
+
+    if (this.initialValues) {
+      this.form.patchValue(this.initialValues);
+    }
   }
 
   onSubmit() {

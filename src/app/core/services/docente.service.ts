@@ -10,9 +10,10 @@ export class DocenteService {
 
   http = inject(HttpClient);
 
-  createDocente(data: DocenteService): Observable<DocenteService> {
-    return this.http.post<DocenteService>('http://localhost:8085/docenti', data);
+  createDocente(data: Docente): Observable<Docente> {
+    return this.http.post<Docente>('http://localhost:8085/docenti', data);
   }
+
 
   deleteDocente(id: number): Observable<any> {
     return this.http.delete<any>(`http://localhost:8085/docenti/${id}`);
@@ -21,4 +22,13 @@ export class DocenteService {
   getDocente(): Observable<Docente[]> {
     return this.http.get<Docente[]>('http://localhost:8085/docenti/list');
   }
+
+  getDocenteById(id: any): Observable<Docente> {
+    return this.http.get<Docente>(`http://localhost:8085/docenti/findById`,{params: {id: id}} );
+  }
+
+  updateDocente(id: number, data: Docente): Observable<Docente> {
+    return this.http.put<Docente>(`http://localhost:8085/docenti/${id}`, data);
+  }
+
 }

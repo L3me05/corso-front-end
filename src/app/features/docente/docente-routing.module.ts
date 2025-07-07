@@ -4,7 +4,8 @@ import {NgModule} from '@angular/core';
 
 const routes: Routes = [
   {path: '', loadComponent: () => import('./list-docente/list-docente')},
-  {path: 'create', loadComponent: () => import('./create-docente/create-docente')}
+  {path: 'create', loadComponent: () => import('./create-docente/create-docente')},
+  {path: 'edit/:id', loadComponent: () => import('./edit-docente/edit-docente')},
 ];
 
 @NgModule({
