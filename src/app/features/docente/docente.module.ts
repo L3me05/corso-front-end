@@ -3,6 +3,7 @@ import {DocenteRoutingModule} from './docente-routing.module';
 import {NgModule} from '@angular/core';
 import ListDocente from './list-docente/list-docente';
 import CreateDocente from './create-docente/create-docente';
+import EditDocente from './edit-docente/edit-docente';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import CreateDocente from './create-docente/create-docente';
     CommonModule,
     DocenteRoutingModule,
     ListDocente,
-    CreateDocente
+    CreateDocente,
+    EditDocente
   ]
 })
 

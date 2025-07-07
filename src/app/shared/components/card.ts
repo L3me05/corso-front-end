@@ -25,12 +25,7 @@ import {NgClass} from '@angular/common';
           <button
             class="btn"
             (click)="action.emit()"
-            [ngClass]="{
-              'btn-info': variant === 'info',
-              'btn-success': variant === 'success',
-              'btn-error': variant === 'error',
-              'btn-warning': variant === 'warning'
-            }"
+            [ngClass]="variant"
           >
             {{ label }}
           </button>
@@ -44,7 +39,7 @@ export class Card {
   @Output() action = new EventEmitter();
   @Input() label = 'click';
   @Input() title: string= '';
-  @Input() variant: 'info' | 'success' | 'error' | 'warning' | undefined;
+  @Input() variant: string= '';
   @Input() cardClass: string = 'bg-primary text-primary-content w-96'
   @Input() titleStyle: string = 'text-xl font-bold'
 

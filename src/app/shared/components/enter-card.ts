@@ -18,6 +18,7 @@ import {AuthService} from '../../core/auth/auth.service';
           label="login"
           [cardClass]="cardClass"
           (action)= "login()"
+          variant="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400"
         >
 
         </app-card>
@@ -27,19 +28,20 @@ import {AuthService} from '../../core/auth/auth.service';
           label="signup"
           [cardClass]="cardClass"
           (action)="signup()"
+          variant="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400"
         >
 
         </app-card>
       </div>
     } @else if (auth.isLoggedIn()) {
-      <button class="btn text-xl" (click)="auth.logout()">Logout</button>
+      <button class="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400" (click)="auth.logout()">Logout</button>
     }
   `,
   styles: ``
 })
 export class EnterCard {
 
-  cardClass = 'bg-sky-500/80 text-primary-content w-100% '
+  cardClass = 'bg-base-100 border-2 text-sky-800 w-100% '
   router = inject(Router)
   auth = inject(AuthService)
 

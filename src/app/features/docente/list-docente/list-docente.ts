@@ -10,8 +10,8 @@ import {ActivatedRoute} from "@angular/router";
   selector: 'app-docente',
   standalone: true,
   imports: [
-    Table,
-    RouterLink
+    RouterLink,
+    Table
   ],
   templateUrl: './list-docente.html',
   styleUrl: './list-docente.css'
@@ -23,16 +23,7 @@ export default class ListDocente implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  rowStyle = "transition-all " +
-    "duration-300  " +
-    "hover:shadow-[0_8px_15px_rgba(0,0,0,0.3)] " +
-    "hover:scale-105  " +
-    "hover:translate-y-[-4px] " +
-    "rounded-[1.5rem] " +
-    "b p-4 " +
-    "border-none " +
-    "outline-none " +
-    "text-md"
+  rowStyle = "text-lg"
 
 
   ngOnInit() {

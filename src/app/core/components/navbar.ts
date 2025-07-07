@@ -15,9 +15,9 @@ import {AuthService} from '../auth/auth.service';
       <div class="flex-1">
         <app-dropdown
           [items]="dropdownItems()"
-          buttonClass="btn-ghost text-3xl"
+          buttonClass="btn-ghost text-3xl hover:text-sky-400"
           (select)="onSelect($event)"
-          dropStyle="bg-sky-300 text-xl  "
+          dropStyle="bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400"
           hover
         >
           MyCorsi

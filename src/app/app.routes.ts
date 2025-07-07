@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'discente',
-    loadComponent: () => import('./features/discente/discente'),
+    loadChildren: () => import('./features/discente/discente.module'),
     canActivate:[authLoggedGuard]
   },
   {

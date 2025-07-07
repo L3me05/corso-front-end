@@ -1,49 +1,49 @@
-<div class="">
-  <table class="table shadow-none w-full border-none border-collapse ">
+<div class="p-6">
+  <table class="table w-full border-separate border-spacing-y-4">
     <!-- head -->
     <thead>
     <tr
       [ngClass]="headStyle"
-      class="text-lg"
+      class="transition-all duration-200"
     >
       @for (col of columns(); track $index) {
-        <th>{{ col }}</th>
+        <th class="p-4 first:rounded-l-lg last:rounded-r-lg">{{ col }}</th>
       }
+      <th class="p-4 rounded-r-lg"></th>
     </tr>
     </thead>
 
     <!-- body -->
-    <tbody class="">
+    <tbody>
       @for (item of items(); track $index) {
         <tr
           [ngClass]="rowStyle"
-          class=""
+          class="hover:shadow-lg transition-all duration-200"
         >
           @for (col of columns(); track $index) {
             <td
-              class=""
+              class="p-4 first:rounded-l-lg"
             >
               {{ item[col] }}
             </td>
           }
 
-          <td class="flex justify-end gap-3">
-            <button class="btn rounded-2xl bg-base-100 " (click)="deleteItem.emit(item)">Elimina</button>
-            <button class="btn rounded-2xl bg-base-100 " (click)="editItem.emit(item)">Modifica</button>
+          <td class="flex justify-end gap-4 p-4 rounded-r-lg">
+            <button
+              class="btn px-6 rounded-full text-lg font-semibold bg-base-100 hover:bg-red-50 hover:text-red-600 transition-all duration-200"
+              (click)="deleteItem.emit(item)"
+            >
+              Elimina
+            </button>
+            <button
+              class="btn px-6 rounded-full text-lg font-semibold bg-base-100 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
+              (click)="editItem.emit(item)"
+            >
+              Modifica
+            </button>
           </td>
         </tr>
       }
     </tbody>
-
-    <tfoot>
-    <tr>
-      @for (col of columns(); track $index) {
-        <th></th>
-      }
-    </tr>
-    </tfoot>
   </table>
 </div>
-
-<!-- debug -->
-<!--    <pre>{{ items() | json }}</pre>-->

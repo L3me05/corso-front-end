@@ -5,20 +5,18 @@
   <div class="pt-20 ">
 
     <app-table
-      [items]="docenti"
+      [items]="discenti"
       [rowStyle]="rowStyle"
-      (deleteItem)="delete( $event)"
-      (editItem)="edit( $event)"
       headStyle="text-white text-2xl font-semibold bg-sky-800"
     />
   </div>
 
   <div class="flex justify-end">
     <button
-      class="btn border-none bg-sky-800 hover:bg-sky-600 text-white mr-20 text-lg shadow-lg rounded-4xl px-8 py-6 "
+      class="btn border-none mb-20 bg-sky-800 hover:bg-sky-600 text-white mr-20 text-lg shadow-lg rounded-4xl px-8 py-6 "
       routerLink="create"
     >
-      Crea un nuovo docente
+      Crea un nuovo discente
     </button>
 
 

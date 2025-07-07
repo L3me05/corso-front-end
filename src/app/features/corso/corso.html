@@ -1,12 +1,10 @@
-<p>
-  corso works!
-</p>
+
 
 <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-8 p-6">
   @for (corso of corsi(); track corso.nome) {
     <div class="break-inside-avoid mb-8">
       <app-card
-        cardClass="bg-sky-300 p-6 w-full flex flex-col rounded-3xl shadow-lg"
+        cardClass="bg-base-100 border-1 border-sky-800 p-6 w-full flex flex-col rounded-3xl shadow-xl"
         [title]="corso.nome + ' (' + corso.annoAccademico + ')'"
         titleStyle="text-center text-2xl font-semibold border-b-2 p-4"
       >
@@ -35,4 +33,4 @@
 </div>
 
 
-<pre>{{corsi() | json}}</pre>
+<!--<pre>{{corsi() | json}}</pre>-->
