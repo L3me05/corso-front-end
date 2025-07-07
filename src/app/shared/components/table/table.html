@@ -1,4 +1,3 @@
-
 <div class="">
   <table class="table shadow-none w-full border-none border-collapse ">
     <!-- head -->
@@ -27,6 +26,10 @@
               {{ item[col] }}
             </td>
           }
+
+          <td>
+            <button class="btn" (click)="$event.stopPropagation(); deleteItem.emit(item)">prova</button>
+          </td>
         </tr>
       }
     </tbody>
