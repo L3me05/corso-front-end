@@ -2,7 +2,7 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {JsonPipe} from '@angular/common';
 import {Card} from '../../shared/components/card';
-import {Corso} from '../../model/Corso';
+import {Corso} from '../../shared/model/Corso';
 
 @Component({
   selector: 'app-corso',
