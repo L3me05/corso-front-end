@@ -41,14 +41,20 @@
           }
         </select>
       } @else if (f.type === 'checkbox') {
-        <label [ngClass]="f.cssCheck">
-          <input
-            type="checkbox"
-            [formControlName]="f.name"
-            [ngClass]="f.cssInput"
-          >
-          <span>{{f.label}}</span>
-        </label>
+        <div class="grid grid-cols-2 gap-1.5">
+          @for (option of f.option; track $index) {
+            <label [ngClass]="f.cssCheck">
+              <input
+                type="checkbox"
+                class="checkbox"
+                [formControlName]="f.name + '_' + $index"
+                [ngClass]="f.cssInput"
+              >
+              <span>{{option.label}}</span>
+            </label>
+          }
+        </div>
+
       }
 
       @if (form.get(f.name)?.touched && form.get(f.name)?.invalid) {

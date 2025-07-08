@@ -1,5 +1,7 @@
 import {ValidatorFn} from '@angular/forms';
 
+export type FieldOption = { label: string; value: any };
+
 export interface FieldConfig {
   name: string;
   type: 'text'|'email'|'number'|'date'|'textarea'|'checkbox' | 'select';
@@ -7,7 +9,7 @@ export interface FieldConfig {
   label?: string;
   cssLabel?: string;
   placeholder?: string;
-  option?: {label: string; value: any}[];
+  option?: FieldOption[];
   validators?: ValidatorFn[];
   cssInput?: string;
   globalCss?: string;

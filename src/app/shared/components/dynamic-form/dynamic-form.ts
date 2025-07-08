@@ -36,7 +36,15 @@ export class DynamicForm implements OnChanges{
 
   ngOnChanges() {
     const group: Record<string, any> = {};
-    this.fields.forEach(f => group[f.name] = ['', f.validators || []]);
+    this.fields.forEach(f => {
+      if(f.type === 'checkbox') {
+        f.option?.forEach((option, index) => {
+          group[`${f.name}_${index}`] = [false, f.validators || []];
+        })
+      } else {
+        group[f.name] = ['', f.validators || []]
+      }
+    });
     this.form = this.fb.group(group);
 
     if (this.initialValues) {
@@ -49,5 +57,6 @@ export class DynamicForm implements OnChanges{
       this.submitForm.emit(this.form.value);
     }
   }
+
 
 }

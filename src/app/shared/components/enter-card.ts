@@ -14,24 +14,18 @@ import {AuthService} from '../../core/auth/auth.service';
       <div class="flex flex-col md:flex-wrap gap-2">
 
         <app-card
-          title="Accedi"
+          title="Accedi o Registrati"
           label="login"
           [cardClass]="cardClass"
           (action)= "login()"
-          variant="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400"
+          variant="btn ml-auto bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400 rounded-2xl"
+          label2="signup"
+          (action2)="signup()"
+          variant2="btn ml-2 bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400 rounded-2xl "
         >
 
         </app-card>
 
-        <app-card
-          title="Registrati"
-          label="signup"
-          [cardClass]="cardClass"
-          (action)="signup()"
-          variant="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400"
-        >
-
-        </app-card>
       </div>
     } @else if (auth.isLoggedIn()) {
       <button class="btn bg-base-100 text-sky-800 hover:text-sky-400 hover:border-sky-400" (click)="auth.logout()">Logout</button>

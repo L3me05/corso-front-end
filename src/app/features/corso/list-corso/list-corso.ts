@@ -34,6 +34,12 @@ export default class ListCorso implements OnInit {
   }
 
   delete(item: Corso) {
+    console.log('Delete chiamato con:', item); // Debug log
+
+    if (!item || !item.id) {
+      console.error('Impossibile eliminare: oggetto o ID non valido', item);
+      return;
+    }
     this.coroService.deleteCorso(item.id).subscribe({
       next: res => this.corsi.update(arr => arr.filter(c => c.id !== item.id)),
       error: err => console.error('Delete failed', err)

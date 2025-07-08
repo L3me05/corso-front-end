@@ -1,1 +1,27 @@
-<p>create-corso works!</p>
+
+
+
+
+<div class="flex flex-col w-full items-center justify-center py-20">
+  <div class="mr-140">
+    <button
+      class="btn rounded-2xl border-none bg-base-100 text-lg"
+      routerLink="/corso"
+    >
+      Indietro
+    </button>
+  </div>
+
+  <div class="font-bold text-3xl p-10 text-sky-800">
+    Crea un nuovo corso
+  </div>
+
+  <div class="w-full items-stretch max-w-2xl  rounded-2xl p-4 shadow-xl"> <!-- Contenitore aggiuntivo -->
+    <app-dynamic-form
+      [fields]="fields"
+      [formCss]="formCss"
+      [button]="corsoButton"
+      (submitForm)="save($event)"
+    />
+  </div>
+</div>
