@@ -44,8 +44,6 @@ export default class ListDocente implements OnInit {
   }
 
   edit(item: Docente) {
-    console.log('Navigazione a edit per docente:', item.id);
-    // Usa la navigazione relativa
     this.router.navigate(['edit', item.id], { relativeTo: this.route });
   }
 }

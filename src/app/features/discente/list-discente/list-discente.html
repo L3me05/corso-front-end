@@ -1,4 +1,5 @@
 
+<script src="../../docente/list-docente/list-docente.ts"></script>
 <div
   class=""
 >
@@ -8,6 +9,8 @@
       [items]="discenti"
       [rowStyle]="rowStyle"
       headStyle="text-white text-2xl font-semibold bg-sky-800"
+      (editItem)="edit($event)"
+      (deleteItem)="delete($event)"
     />
   </div>
 

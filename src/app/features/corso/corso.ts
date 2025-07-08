@@ -8,8 +8,7 @@ import {Corso} from '../../shared/model/Corso';
   selector: 'app-corso',
   standalone: true,
   imports: [
-    Card,
-    JsonPipe
+    Card
   ],
   templateUrl: './corso.html',
   styleUrl: './corso.css'
