@@ -8,7 +8,7 @@ const formCss = 'flex flex-col gap-8 p-4 ';
 const globalCss = 'flex flex-col gap-4 ';
 
 export const DISCENTE_BUTTON: ButtonForm = {
-  css: 'btn bg-none bg-sky-800 text-white text-lg rounded-xl px-8 py-6 w-fit font-bold text-lg',
+  css: 'btn bg-sky-800 text-white text-lg rounded-xl px-8 py-6 w-fit font-bold text-lg',
   label: 'Invia'
 }
 

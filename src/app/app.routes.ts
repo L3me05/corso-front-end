@@ -5,7 +5,7 @@ import {authLoggedGuard} from './core/auth/auth-logged-guard';
 export const routes: Routes = [
   {
     path:'corso',
-    loadComponent: () => import('./features/corso/corso'),
+    loadChildren: () => import('./features/corso/corso.module'),
     canActivate:[authLoggedGuard]
   },
   {
