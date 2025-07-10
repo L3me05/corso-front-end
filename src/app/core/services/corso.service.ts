@@ -26,7 +26,7 @@ export class CorsoService {
   }
 
   getCorsoById(id: number): Observable<Corso> {
-    return this.http.get<Corso>('http://localhost:8085/corsi/findById', { params: { id } });
+    return this.http.get<Corso>('http://localhost:8085/corsi/findById', { params: { id: id.toString() } });
   }
 
 }

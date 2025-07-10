@@ -9,9 +9,6 @@ import {CorsoService} from '../../../core/services/corso.service';
 @Component({
   selector: 'app-edit-corso',
   imports: [
-    Card,
-    RouterLink,
-    DynamicForm,
     CorsoForm
   ],
   templateUrl: './edit-corso.html',
@@ -29,9 +26,12 @@ export default class EditCorso implements OnInit{
       const id = params['id'];
       console.log('Questo è l\'id del corso ', id )
       this.corsoService.getCorsoById(id).subscribe({
-        next: res => this.formData.set(res),
+        next: res => {
+          this.formData.set(res)
+        },
         error: err => console.error('Errore nel caricamento del corso', err)
       })
     })
+
   }
 }

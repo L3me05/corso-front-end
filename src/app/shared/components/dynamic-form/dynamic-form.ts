@@ -21,7 +21,8 @@ export type ButtonForm = {
 export class DynamicForm implements OnChanges{
   @Input()
   fields: FieldConfig[] = [];
-  @Input() formCss: string = 'flex flex-col gap-4 p-4';
+  @Input()
+  formCss: string = 'flex flex-col gap-4 p-4';
   @Input()
   button: ButtonForm = {
     css: 'btn btn-primary',
@@ -29,7 +30,8 @@ export class DynamicForm implements OnChanges{
   };
   @Output()
   submitForm = new EventEmitter<any>();
-  @Input() initialValues?: any;
+  @Input()
+  initialValues?: any;
 
   form!: FormGroup;
   fb = inject(FormBuilder);
