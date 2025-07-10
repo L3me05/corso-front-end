@@ -64,8 +64,6 @@ export class CorsoForm implements OnInit, OnChanges {
       this.discentiService.getDiscente(),
     ]).subscribe({
       next: ([docenti, discenti]) => {
-        console.log('docenti', docenti);
-        console.log('discenti', discenti);
         this.setOptions('docente', docenti);
         this.setOptions('discenti', discenti);
         this.dataLoaded.set(true);
@@ -79,15 +77,12 @@ export class CorsoForm implements OnInit, OnChanges {
 
   private updateFormData() {
     if (this.initial) {
-      console.log('section update');
       this.formData.set(this.getFormattedInitialValues());
-      console.log('dati inizializzati', this.formData());
     }
   }
 
   private setOptions(fieldName: string, list: any[]) {
     const f = this.fields.find((x) => x.name === fieldName);
-    console.log('field for ' + fieldName, f);
     if (f) {
       f.option = list.map((d) => ({
         label: `${d.nome} ${d.cognome}`,
@@ -101,7 +96,6 @@ export class CorsoForm implements OnInit, OnChanges {
       this.docenteService.getDocente(),
       this.discentiService.getDiscente(),
     ]).subscribe(([docenti, discenti]) => {
-      console.log(item.docente);
       const docenteId =
         typeof item.docente === 'object' ? item.docente.id : item.docente;
       const docenteCompleto = docenti.find(
@@ -179,7 +173,6 @@ export class CorsoForm implements OnInit, OnChanges {
   }
 
   getFormattedInitialValues(): Corso | undefined {
-    console.log('Dati inizializzati', this.initial);
     if (this.mode === 'edit' && this.initial) {
       const formattedValues: any = {
         nome: this.initial.nome,
@@ -207,7 +200,6 @@ export class CorsoForm implements OnInit, OnChanges {
           formattedValues.discenti = this.initial.discenti.map((d) => d.id);
         }
       }
-      console.log('dati formattati', formattedValues);
       return formattedValues;
     }
     return undefined;

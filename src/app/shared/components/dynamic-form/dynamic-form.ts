@@ -50,17 +50,13 @@ export class DynamicForm implements OnChanges {
     const group: Record<string, any> = {};
     this.fields.forEach((f) => {
       if (f.type === 'checkbox') {
-        console.log(f, 'is checkbox');
-        console.log('option', f.option);
         f.option?.forEach((option, index) => {
-          console.log('option', option);
           group[`${f.name}_${index}`] = [false, f.validators || []];
         });
       } else {
         group[f.name] = ['', f.validators || []];
       }
     });
-    console.log('group for studenti', group);
     this.form = this.fb.group(group);
 
     if (this.initialValues) {

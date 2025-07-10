@@ -12,7 +12,7 @@
     {{mode === 'edit' ? 'Modifica il corso' : 'Crea un nuovo corso'}}
   </div>
 
-  <div class="w-full items-stretch max-w-2xl  rounded-2xl p-4 shadow-xl">
+  <div class="w-full items-stretch max-w-2xl rounded-2xl p-4 shadow-xl">
     @if (dataLoaded()) {
       <app-dynamic-form
         [fields]="fields"
