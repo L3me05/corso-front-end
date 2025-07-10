@@ -13,12 +13,14 @@
   </div>
 
   <div class="w-full items-stretch max-w-2xl  rounded-2xl p-4 shadow-xl">
-    <app-dynamic-form
-      [fields]="fields"
-      [formCss]="formCss"
-      [button]="corsoButton"
-      (submitForm)="save($event)"
-      [initialValues]="formData()"
-    />
+    @if (dataLoaded()) {
+      <app-dynamic-form
+        [fields]="fields"
+        [formCss]="formCss"
+        [button]="corsoButton"
+        (submitForm)="save($event)"
+        [initialValues]="formData()"
+      />
+    }
   </div>
 </div>
