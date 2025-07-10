@@ -1,24 +1,34 @@
-import {Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
-import {FieldConfig} from '../../model/field-config.model';
-import {CommonModule, NgClass} from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidatorFn,
+} from '@angular/forms';
+import { FieldConfig } from '../../model/field-config.model';
+import { CommonModule, NgClass } from '@angular/common';
 
 export type ButtonForm = {
   css: string;
   label: string;
-}
+};
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule
-  ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './dynamic-form.html',
-  styleUrl: './dynamic-form.css'
+  styleUrl: './dynamic-form.css',
 })
-export class DynamicForm implements OnChanges{
+export class DynamicForm implements OnChanges {
   @Input()
   fields: FieldConfig[] = [];
   @Input()
@@ -26,7 +36,7 @@ export class DynamicForm implements OnChanges{
   @Input()
   button: ButtonForm = {
     css: 'btn btn-primary',
-    label: 'Invio'
+    label: 'Invio',
   };
   @Output()
   submitForm = new EventEmitter<any>();
@@ -38,15 +48,19 @@ export class DynamicForm implements OnChanges{
 
   ngOnChanges() {
     const group: Record<string, any> = {};
-    this.fields.forEach(f => {
-      if(f.type === 'checkbox') {
+    this.fields.forEach((f) => {
+      if (f.type === 'checkbox') {
+        console.log(f, 'is checkbox');
+        console.log('option', f.option);
         f.option?.forEach((option, index) => {
+          console.log('option', option);
           group[`${f.name}_${index}`] = [false, f.validators || []];
-        })
+        });
       } else {
-        group[f.name] = ['', f.validators || []]
+        group[f.name] = ['', f.validators || []];
       }
     });
+    console.log('group for studenti', group);
     this.form = this.fb.group(group);
 
     if (this.initialValues) {
@@ -55,10 +69,10 @@ export class DynamicForm implements OnChanges{
   }
 
   onSubmit() {
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.submitForm.emit(this.form.value);
     }
   }
 
-
+  protected readonly JSON = JSON;
 }
